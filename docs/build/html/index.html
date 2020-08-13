@@ -1,0 +1,372 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to dog-api-test-challenge’s documentation! &#8212; dog-api-test-challenge * documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="welcome-to-dog-api-test-challenge-s-documentation">
+<h1>Welcome to dog-api-test-challenge’s documentation!<a class="headerlink" href="#welcome-to-dog-api-test-challenge-s-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<span class="target" id="module-testset_webpage_with_selenium"></span><p>A set of Selenium/Requests test cases against the Dog API</p>
+<dl class="py class">
+<dt id="testset_webpage_with_selenium.TestSuiteDogAPIWebSelenium">
+<em class="property">class </em><code class="sig-prename descclassname">testset_webpage_with_selenium.</code><code class="sig-name descname">TestSuiteDogAPIWebSelenium</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">methodName</span><span class="o">=</span><span class="default_value">'runTest'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#testset_webpage_with_selenium.TestSuiteDogAPIWebSelenium" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">unittest.case.TestCase</span></code></p>
+<p>A suite of test cases to test the Dog API</p>
+<dl class="py method">
+<dt id="testset_webpage_with_selenium.TestSuiteDogAPIWebSelenium.setUp">
+<code class="sig-name descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#testset_webpage_with_selenium.TestSuiteDogAPIWebSelenium.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Always executed before test case is run. Provides required test case
+setup.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="testset_webpage_with_selenium.TestSuiteDogAPIWebSelenium.tearDown">
+<code class="sig-name descname">tearDown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#testset_webpage_with_selenium.TestSuiteDogAPIWebSelenium.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Always executed after test case is finished, regardless of success or
+failure. Provides required test case cleanup/teardown.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="testset_webpage_with_selenium.TestSuiteDogAPIWebSelenium.test_any_random_endpoint">
+<code class="sig-name descname">test_any_random_endpoint</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#testset_webpage_with_selenium.TestSuiteDogAPIWebSelenium.test_any_random_endpoint" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div><p>Test any /breed/images/random/{number} endpoint returns the list of
+images. Test uses a large number to begin with, but not all breeds
+would have such a large set of pictures, so the test validates list
+length is such a case.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>Test Steps:</dt><dd><ol class="arabic simple">
+<li><p>Get all available /breed endpoints</p></li>
+<li><p>Get only /random endpoints from the list, removing
+“/breeds/image/random” collections endpoint which is capped at
+50 max</p></li>
+<li><p>Perform a request toward the endpoint</p></li>
+<li><p>Check the length of the returned image list is equal to the
+requested number of random images</p></li>
+</ol>
+</dd>
+<dt>Expected Result:</dt><dd><p>The /random/{number_of_imgs} endpoint returns the requested number
+of images or the most it has available otherwise</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="testset_webpage_with_selenium.TestSuiteDogAPIWebSelenium.test_check_cookies_available_across_site">
+<code class="sig-name descname">test_check_cookies_available_across_site</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#testset_webpage_with_selenium.TestSuiteDogAPIWebSelenium.test_check_cookies_available_across_site" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verifies the information on the site cookies and checks cookies are
+available across the site</p>
+<dl class="simple">
+<dt>Test Steps:</dt><dd><ol class="arabic simple">
+<li><p>Retrieve the cookies on the home page</p></li>
+<li><p>Check the domain information on the cookie matches the dog.ceo
+domain</p></li>
+<li><p>Store the cookie IDs for GA and CF</p></li>
+<li><p>Navigate to another page</p></li>
+<li><p>Verify cookie IDs have not changed</p></li>
+</ol>
+</dd>
+<dt>Expected Result:</dt><dd><p>Cookies are available across the site</p>
+</dd>
+<dt>Note:</dt><dd><p>Is possible test could be extended to verify expiration date as
+well</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="testset_webpage_with_selenium.TestSuiteDogAPIWebSelenium.test_check_page_title_metadata">
+<code class="sig-name descname">test_check_page_title_metadata</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#testset_webpage_with_selenium.TestSuiteDogAPIWebSelenium.test_check_page_title_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks the home page’s title, url, description etc. meta values</p>
+<dl class="simple">
+<dt>Test Steps:</dt><dd><ol class="arabic simple">
+<li><p>Navigate to home page</p></li>
+<li><p>Check the title property matches the expected text</p></li>
+<li><p>Check the url meta tag matches the page url</p></li>
+<li><p>Check the description meta tag matches the expected text</p></li>
+</ol>
+</dd>
+<dt>Expected Result:</dt><dd><p>Meta information on page matches expected data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="testset_webpage_with_selenium.TestSuiteDogAPIWebSelenium.test_do_fetch_on_page_check_image_updated">
+<code class="sig-name descname">test_do_fetch_on_page_check_image_updated</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#testset_webpage_with_selenium.TestSuiteDogAPIWebSelenium.test_do_fetch_on_page_check_image_updated" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use the Fetch button on the page and check a new image is loaded</p>
+<dl class="simple">
+<dt>Test Steps:</dt><dd><ol class="arabic simple">
+<li><p>Go to homepage</p></li>
+<li><p>Locate the JSON element on the page</p></li>
+<li><p>Retrieve the data and convert to a dictionary</p></li>
+<li><p>Locate the get-dog button element</p></li>
+<li><p>Click the button element</p></li>
+<li><p>Retrieve the JSON element from the page again</p></li>
+<li><p>Assert the ‘message’ field has changed to a new image link</p></li>
+</ol>
+</dd>
+<dt>Expected Result:</dt><dd><p>Fetch button updated the image displayed on the page</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="testset_webpage_with_selenium.TestSuiteDogAPIWebSelenium.test_get_home_page_over_http_https_redirect">
+<code class="sig-name descname">test_get_home_page_over_http_https_redirect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#testset_webpage_with_selenium.TestSuiteDogAPIWebSelenium.test_get_home_page_over_http_https_redirect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests that <a class="reference external" href="http://dog.ceo/dog-api">http://dog.ceo/dog-api</a> redirects to <a class="reference external" href="https://dog.ceo/dog-api">https://dog.ceo/dog-api</a></p>
+<dl class="simple">
+<dt>Test Steps:</dt><dd><ol class="arabic simple">
+<li><p>Open the browser and go to <a class="reference external" href="http://dog.ceo/dog-api">http://dog.ceo/dog-api</a></p></li>
+<li><p>Assert page is redirected to <a class="reference external" href="https://dog.ceo/dog-api">https://dog.ceo/dog-api</a></p></li>
+<li><p>Perform step 1 in requests</p></li>
+<li><p>Assert redirect 301 HTTP code</p></li>
+</ol>
+</dd>
+<dt>Expected Result:</dt><dd><p>The browser redirects <a class="reference external" href="http://dog.ceo/dog-api">http://dog.ceo/dog-api</a> to
+<a class="reference external" href="https://dog.ceo/dog-api">https://dog.ceo/dog-api</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="testset_webpage_with_selenium.TestSuiteDogAPIWebSelenium.test_get_request_against_every_available_endpoint">
+<code class="sig-name descname">test_get_request_against_every_available_endpoint</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#testset_webpage_with_selenium.TestSuiteDogAPIWebSelenium.test_get_request_against_every_available_endpoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests every available breed endpoint that should be available.
+Does not validate data, only a 200 HTTP response</p>
+<dl class="simple">
+<dt>Test Steps:</dt><dd><ol class="arabic simple">
+<li><p>Retrieve a list of all available breed endpoints</p></li>
+<li><p>Loop through each endpoint in the list and perform a GET
+request</p></li>
+<li><p>Assert an HTTP 200 response code</p></li>
+</ol>
+</dd>
+<dt>Expected Result:</dt><dd><p>All endpoints are live and contactable</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="testset_webpage_with_selenium.TestSuiteDogAPIWebSelenium.test_navigate_to_random_endpoint_choice_go_back_refresh">
+<code class="sig-name descname">test_navigate_to_random_endpoint_choice_go_back_refresh</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#testset_webpage_with_selenium.TestSuiteDogAPIWebSelenium.test_navigate_to_random_endpoint_choice_go_back_refresh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Navigate to any random page from the home page, refresh the page
+then return back to the home page.</p>
+<dl class="simple">
+<dt>Test Steps:</dt><dd><ol class="arabic simple">
+<li><p>Get all available links from /documentation page</p></li>
+<li><p>Store the current url</p></li>
+<li><p>Choose one random page from the list and navigate to it</p></li>
+<li><p>Refresh the page and assert url remains unchanged</p></li>
+<li><p>Go back to the original page</p></li>
+<li><p>Assert new page is equal to the original chosen page</p></li>
+</ol>
+</dd>
+<dt>Expected Result:</dt><dd><p>Dog API website behaves as expected on page refresh and go back</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="testset_webpage_with_selenium.TestSuiteDogAPIWebSelenium.test_random_collection_max_50">
+<code class="sig-name descname">test_random_collection_max_50</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#testset_webpage_with_selenium.TestSuiteDogAPIWebSelenium.test_random_collection_max_50" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests retrieving a collection of random dog images from /breeds/random
+by providing a number larger that 50; 50 images being the max
+available</p>
+<dl class="simple">
+<dt>Test Steps:</dt><dd><ol class="arabic simple">
+<li><p>Do a GET at ‘<a class="reference external" href="https://dog.ceo/api/breeds/image/random/100">https://dog.ceo/api/breeds/image/random/100</a>’</p></li>
+<li><p>Verify returned list of images exists and is only length 50</p></li>
+</ol>
+</dd>
+<dt>Expected Result:</dt><dd><p>Random collection of images returned is 50, if provided with a
+larger that 50 request</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="testset_webpage_with_selenium.TestSuiteDogAPIWebSelenium.test_select_breed_from_breed_list_page_random">
+<code class="sig-name descname">test_select_breed_from_breed_list_page_random</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#testset_webpage_with_selenium.TestSuiteDogAPIWebSelenium.test_select_breed_from_breed_list_page_random" title="Permalink to this definition">¶</a></dt>
+<dd><p>Navigate to <a class="reference external" href="https://dog.ceo/dog-api/breeds-list">https://dog.ceo/dog-api/breeds-list</a> and randomly choose a
+breed from the selection-box, click it and assert image updated</p>
+<dl class="simple">
+<dt>Test Steps:</dt><dd><ol class="arabic simple">
+<li><p>Retrieve the <a class="reference external" href="https://dog.ceo/dog-api/breeds-list">https://dog.ceo/dog-api/breeds-list</a> from the
+documentation page and navigate to it</p></li>
+<li><p>Retrieve the image element currently displayed in the browser</p></li>
+<li><p>Retrieve the dog-selector element and choose one at random</p></li>
+<li><p>Click the selected breed option</p></li>
+<li><p>Check the image element has been updated</p></li>
+</ol>
+</dd>
+<dt>Expected Result:</dt><dd><p>The image is updated to the appropriate breed choice</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="testset_webpage_with_selenium.TestSuiteDogAPIWebSelenium.test_subscribe_via_email_invalid_email_given">
+<code class="sig-name descname">test_subscribe_via_email_invalid_email_given</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#testset_webpage_with_selenium.TestSuiteDogAPIWebSelenium.test_subscribe_via_email_invalid_email_given" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attempts to subscribe via a fake email, that is syntactically valid</p>
+<dl class="simple">
+<dt>Test Steps:</dt><dd><ol class="arabic simple">
+<li><p>Attempt to subscribe using an email using a fake email</p></li>
+<li><p>Verify error message matches the expected error message</p></li>
+</ol>
+</dd>
+<dt>Expected Result:</dt><dd><p>Appropriate error message regarding a fake email</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="testset_webpage_with_selenium.TestSuiteDogAPIWebSelenium.test_subscribe_via_email_invalid_email_syntax_given">
+<code class="sig-name descname">test_subscribe_via_email_invalid_email_syntax_given</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#testset_webpage_with_selenium.TestSuiteDogAPIWebSelenium.test_subscribe_via_email_invalid_email_syntax_given" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attempts to subscribe via invalid email</p>
+<dl class="simple">
+<dt>Test Steps:</dt><dd><ol class="arabic simple">
+<li><p>Attempt to subscribe using an email using invalid syntax</p></li>
+<li><p>Verify error message matches the expected error message</p></li>
+</ol>
+</dd>
+<dt>Expected Result:</dt><dd><p>Appropriate error message regarding an invalid email</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="testset_webpage_with_selenium.TestSuiteDogAPIWebSelenium.test_validate_json_response_matches_page">
+<code class="sig-name descname">test_validate_json_response_matches_page</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#testset_webpage_with_selenium.TestSuiteDogAPIWebSelenium.test_validate_json_response_matches_page" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div><p>Tests that the JSON data shown on the ‘/documentation/random’ page
+matches the JSON data returned from a GET request</p>
+</div></blockquote>
+<dl class="simple">
+<dt>Test Steps:</dt><dd><ol class="arabic simple">
+<li><p>Retrieve all endpoints available, remove any endpoint that is
+/random</p></li>
+<li><p>Choose an endpoint at random from the available list</p></li>
+<li><p>Access the endpoint in the browser and retrieve the raw JSON
+data</p></li>
+<li><p>Perform a GET request with requests and retrieve the JSON
+response</p></li>
+<li><p>Assert both data sets match</p></li>
+</ol>
+</dd>
+<dt>Expected Result:</dt><dd><p>Raw data from endpoint shown in the browser match the returned
+data from a requests.get()</p>
+</dd>
+<dt>Note:</dt><dd><p>It’s also possible to retrieve the JSON raw data from the
+‘/breed/hound’ (/documentation/breed page), however that only
+tests /hound breed, as that is the only one listed on the page</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">dog-api-test-challenge</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, *.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

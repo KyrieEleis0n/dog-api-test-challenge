@@ -1,0 +1,6 @@
+PS C:\Users\Ares Christou\Documents\mine\dog-api-test-challenge> python .\src\testset_webpage_with_selenium.py > selenium_test_results.txt
+............
+----------------------------------------------------------------------
+Ran 12 tests in 153.331s
+
+OK
