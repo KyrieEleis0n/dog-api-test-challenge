@@ -59,10 +59,27 @@ Suite Improvements
 - Selenium test suite contains a *logger* to capture *sys.stdout* which was used for DEBUG purposes. All logging was removed from test cases but can be included back in if required for test logs.
 - Selenium suite calls utils.get_all_available_breed_endpoints_from_list_all() in many test cases, but it could be optimised by calling it once during a setUpClass() method and populate the list once for all tests. Would save some time during test run.
 
-Improvment Suggestions from Functional Selenium Run
----------------------------------------------------
+Improvement Suggestions from Functional Selenium Run
+----------------------------------------------------
 
 - Navigating to `Breeds List <http://dog.ceo/dog-api/breeds-list>`_ page, the *selection-box* appears, at first glance, to be a text box
 - Navigating directly to Breeds List page does not seem enforce HTTPS, though it seems to be the case I could see as such. Navigating from any other page on the site to Breeds List seems ok.
 - `By breed <https://dog.ceo/dog-api/documentation/sub-breed>`_ and `By sub-breed <https://dog.ceo/dog-api/documentation/sub-breed>`_ documentation only uses */breed/hound* in the examples. Consider adding a selection box, as in Breeds List above, instead; or make it clear that more breeds exist as it's not clearly apparent at first glance.
 - Page Title says *Dog API* regardless of what sub-page on the site the user has currently loaded.
+
+Locust Load Analysis
+---------------------------------------------------
+- Without defined KPIs it was tough to know what should be expected from the results
+- Ran the following tests:
+   - **1 user** executing requests for **1 minute**
+   - **10 users** at a **hatch rate of 1** (*1 user added every second*) for *4 minutes*
+   - **20 users** at a **hatch rate of 3** for **10 minutes**
+   - **45 users** at a **hatch rate of 3** for  for **10 minutes**
+   - **100 users** at a **hatch rate of 5** for **30 minutes**
+   - **wait_time** for each user was **between 3 and 9 seconds**
+- For CircleCI specified only the 1 user for 1 minute due to the limitations for free users
+- Results:
+   - Throughout all the runs there were **0 failures**, all requests were successful
+   - As expected, tasks with higher weights appeared more in the list of requests (more users chose to perform those tasks), so *images/random/<some number>* appear much more often that the rest with a weight of 4
+   - /breeds/list/all is executed on_start() by all users
+   - During the 100 users run, requests per second could reach up 19 (aggregated results), but seems to hover between 12 and 16 for the most part
